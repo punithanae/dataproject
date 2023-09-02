@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('C:/Users/punit/Downloads/test.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .upload-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+        <h1>File Upload</h1>
+        <div class="upload-form">
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="file">Select a file:</label>
+                    <input type="file" id="file" name="file">
+                </div>
+                <div class="form-group">
+                    <label for="input-box">Enter the number:</label>
+                    <input type="text" id="input-box" name="input_box">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+        <div class="Total Sum Number">
+            <h2>Data View</h2>
+            {% if data %}
+                <ul>
+                    {% for item in data %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data available.</p>
+            {% endif %}
+        </div>
+    </body>
+    </html>
+
+
+
+
+
+
+

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-color: #b8bdf8;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .upload-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b7a6f5;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .data-view {
+            background-color: #c6d0fa;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .data-view h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .data-view ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .data-view li {
+            list-style-type: none;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .data-view p {
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>File Upload</h1>
+        <div class="upload-form">
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="file">Select a file:</label>
+                    <input type="file" id="file" name="file" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-box">Enter the Total number:</label>
+                    <input type="text" id="input-box" name="input_box" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-box">Enter the Pyramid number:</label>
+                    <input type="text" id="pyramid" name="pyramid" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-box">Enter the Ended number:</label>
+                    <input type="text" id="ended" name="ended" required>
+                </div>
+                <div class="form-group">
+                    <label for="input-box">Enter the Common number:</label>
+                    <input type="text" id="common" name="common" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+        <div class="data-view">
+            <h2>Total Comparation numbers</h2>
+            {% if data4 %}
+                <ul>
+                    {% for item in data4 %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data available.</p>
+            {% endif %}
+        </div>
+        <div class="data-view">
+            <h2>Total Sum Number</h2>
+            {% if data %}
+                <ul>
+                    {% for item in data %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data available.</p>
+            {% endif %}
+        </div>
+        <div class="data-view">
+            <h2>Common Finding Number</h2>
+            {% if data2 %}
+                <ul>
+                    {% for item in data2 %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data available.</p>
+            {% endif %}
+        </div>
+        <div class="data-view">
+            <h2>Ending Number</h2>
+            {% if data1 %}
+                <ul>
+                    {% for item in data1 %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data available.</p>
+            {% endif %}
+        </div>
+        <div class="data-view">
+            <h2>Pyramid Number</h2>
+            {% if data3 %}
+                <ul>
+                    {% for item in data3 %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

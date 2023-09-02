@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Success</title>
+</head>
+<body>
+    <h1>Upload Successful!</h1>
+    <div class="data-view">
+        <h2>Data View</h2>
+        {% if lines %}
+            <ul>
+                {% for line in lines %}
+                    <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
